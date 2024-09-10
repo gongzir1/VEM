@@ -1,0 +1,24 @@
+wandb_version: 1
+
+attacks:
+  value: my_attack
+defense:
+  value: FRL
+iteration:
+  value: 50
+k:
+  value: 0.1
+lr:
+  value: 0.1
+m_r:
+  value: 0.2
+max_t:
+  value: 3000
+nep:
+  value: 60
+noise:
+  value: 1
+non_iid:
+  value: iid
+temp:
+  value: 0.0001

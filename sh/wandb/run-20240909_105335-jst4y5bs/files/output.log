@@ -1,0 +1,12 @@
+=> Saving data in Logs/CIFAR10my_attack_defense~try=2
+dataset to use is:  CIFAR10
+number of FL clients:  1000
+non-iid degree data distribution:  iid
+batch size is :  32
+test batch size is:  128
+Files already downloaded and verified
+Files already downloaded and verified
+use_cuda:  True
+type of FL:  my_attack_defense
+#########Federated Learning using Rankings############
+fraction of maliciou clients: 0.20 | total number of malicious clients: 200

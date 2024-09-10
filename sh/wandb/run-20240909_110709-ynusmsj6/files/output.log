@@ -1,0 +1,64 @@
+=> Saving data in Logs/MNISTmy_attack_defense~try=0
+dataset to use is:  MNIST
+number of FL clients:  1000
+non-iid degree data distribution:  iid
+batch size is :  32
+test batch size is:  128
+Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz
+Failed to download (trying next):
+HTTP Error 403: Forbidden
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/train-images-idx3-ubyte.gz
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/train-images-idx3-ubyte.gz to ./MNIST/data/MNIST/raw/train-images-idx3-ubyte.gz
+
+
+
+94.2%
+Extracting ./MNIST/data/MNIST/raw/train-images-idx3-ubyte.gz to ./MNIST/data/MNIST/raw
+
+100.0%
+Failed to download (trying next):
+HTTP Error 403: Forbidden
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/train-labels-idx1-ubyte.gz
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/train-labels-idx1-ubyte.gz to ./MNIST/data/MNIST/raw/train-labels-idx1-ubyte.gz
+Extracting ./MNIST/data/MNIST/raw/train-labels-idx1-ubyte.gz to ./MNIST/data/MNIST/raw
+Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz
+100.0%
+Failed to download (trying next):
+HTTP Error 403: Forbidden
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/t10k-images-idx3-ubyte.gz
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/t10k-images-idx3-ubyte.gz to ./MNIST/data/MNIST/raw/t10k-images-idx3-ubyte.gz
+
+
+83.5%
+Extracting ./MNIST/data/MNIST/raw/t10k-images-idx3-ubyte.gz to ./MNIST/data/MNIST/raw
+
+100.0%
+Failed to download (trying next):
+HTTP Error 403: Forbidden
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/t10k-labels-idx1-ubyte.gz
+100.0%
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/t10k-labels-idx1-ubyte.gz to ./MNIST/data/MNIST/raw/t10k-labels-idx1-ubyte.gz
+Extracting ./MNIST/data/MNIST/raw/t10k-labels-idx1-ubyte.gz to ./MNIST/data/MNIST/raw
+generating IID participant indices
+use_cuda:  True
+type of FL:  my_attack_defense
+#########Federated Learning using Rankings############
+fraction of maliciou clients: 0.20 | total number of malicious clients: 200
+e 0 | malicious users: 5 | test acc 0.5288 test loss 1.764909 best test_acc 0.5288
+e 1 | malicious users: 5 | test acc 0.7573 test loss 1.178622 best test_acc 0.7573
+e 2 | malicious users: 5 | test acc 0.8092 test loss 0.873794 best test_acc 0.8092
+e 3 | malicious users: 5 | test acc 0.8066 test loss 0.740607 best test_acc 0.8092
+e 4 | malicious users: 5 | test acc 0.7988 test loss 0.660898 best test_acc 0.8092
+e 5 | malicious users: 5 | test acc 0.8001 test loss 0.681131 best test_acc 0.8092
+e 6 | malicious users: 5 | test acc 0.8834 test loss 0.490712 best test_acc 0.8834
+e 7 | malicious users: 5 | test acc 0.8812 test loss 0.414124 best test_acc 0.8834
+e 8 | malicious users: 5 | test acc 0.8686 test loss 0.434346 best test_acc 0.8834
+e 9 | malicious users: 5 | test acc 0.9118 test loss 0.341454 best test_acc 0.9118
+e 10 | malicious users: 5 | test acc 0.9117 test loss 0.319434 best test_acc 0.9118
+e 11 | malicious users: 5 | test acc 0.9067 test loss 0.331293 best test_acc 0.9118
+e 12 | malicious users: 5 | test acc 0.9236 test loss 0.286602 best test_acc 0.9236
+e 13 | malicious users: 5 | test acc 0.9234 test loss 0.274108 best test_acc 0.9236
+e 14 | malicious users: 5 | test acc 0.9237 test loss 0.267147 best test_acc 0.9237
+e 15 | malicious users: 5 | test acc 0.9265 test loss 0.259108 best test_acc 0.9265
+e 16 | malicious users: 5 | test acc 0.9297 test loss 0.243204 best test_acc 0.9297
+e 17 | malicious users: 5 | test acc 0.9235 test loss 0.266678 best test_acc 0.9297

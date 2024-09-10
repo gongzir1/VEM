@@ -1,0 +1,66 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    python_version: 3.10.9
+    cli_version: 0.16.6
+    framework: torch
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1725854760.0
+    t:
+      1:
+      - 1
+      - 5
+      - 41
+      - 53
+      - 55
+      2:
+      - 1
+      - 5
+      - 41
+      - 53
+      - 55
+      3:
+      - 2
+      - 23
+      - 37
+      4: 3.10.9
+      5: 0.16.6
+      8:
+      - 5
+      13: linux-x86_64
+attacks:
+  desc: null
+  value: my_attack
+defense:
+  desc: null
+  value: FRL
+iteration:
+  desc: null
+  value: 50
+k:
+  desc: null
+  value: 0.1
+lr:
+  desc: null
+  value: 0.1
+m_r:
+  desc: null
+  value: 0.2
+max_t:
+  desc: null
+  value: 3000
+nep:
+  desc: null
+  value: 60
+noise:
+  desc: null
+  value: 1
+non_iid:
+  desc: null
+  value: iid
+temp:
+  desc: null
+  value: 0.0001

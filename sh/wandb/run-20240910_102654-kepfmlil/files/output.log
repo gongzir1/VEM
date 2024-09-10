@@ -1,0 +1,34 @@
+=> Saving data in Logs/MNISTmy_attack_defense~try=8
+dataset to use is:  MNIST
+number of FL clients:  1000
+non-iid degree data distribution:  iid
+batch size is :  8
+test batch size is:  128
+use_cuda:  True
+type of FL:  my_attack_defense
+#########Federated Learning using Rankings############
+fraction of maliciou clients: 0.20 | total number of malicious clients: 200
+e 0 | malicious users: 5 | test acc 0.3354 test loss 2.229853 best test_acc 0.3354
+e 1 | malicious users: 5 | test acc 0.5215 test loss 1.993107 best test_acc 0.5215
+e 2 | malicious users: 5 | test acc 0.5362 test loss 1.895392 best test_acc 0.5362
+e 3 | malicious users: 5 | test acc 0.5484 test loss 1.834756 best test_acc 0.5484
+e 4 | malicious users: 5 | test acc 0.6728 test loss 1.165160 best test_acc 0.6728
+e 5 | malicious users: 5 | test acc 0.6607 test loss 1.232921 best test_acc 0.6728
+e 6 | malicious users: 5 | test acc 0.7412 test loss 1.281508 best test_acc 0.7412
+e 7 | malicious users: 5 | test acc 0.7443 test loss 0.946861 best test_acc 0.7443
+e 8 | malicious users: 5 | test acc 0.7392 test loss 1.053759 best test_acc 0.7443
+e 9 | malicious users: 5 | test acc 0.7553 test loss 0.804361 best test_acc 0.7553
+e 10 | malicious users: 5 | test acc 0.7939 test loss 0.919973 best test_acc 0.7939
+e 11 | malicious users: 5 | test acc 0.8046 test loss 0.659254 best test_acc 0.8046
+e 12 | malicious users: 5 | test acc 0.8223 test loss 0.931362 best test_acc 0.8223
+e 13 | malicious users: 5 | test acc 0.8581 test loss 0.798270 best test_acc 0.8581
+e 14 | malicious users: 5 | test acc 0.8972 test loss 0.527660 best test_acc 0.8972
+e 15 | malicious users: 5 | test acc 0.9125 test loss 0.613974 best test_acc 0.9125
+e 16 | malicious users: 5 | test acc 0.8396 test loss 0.603273 best test_acc 0.9125
+e 17 | malicious users: 5 | test acc 0.7963 test loss 0.790931 best test_acc 0.9125
+e 18 | malicious users: 5 | test acc 0.8520 test loss 0.611511 best test_acc 0.9125
+e 19 | malicious users: 5 | test acc 0.8145 test loss 0.661938 best test_acc 0.9125
+e 20 | malicious users: 5 | test acc 0.8249 test loss 0.671170 best test_acc 0.9125
+e 21 | malicious users: 5 | test acc 0.8992 test loss 0.446632 best test_acc 0.9125
+e 22 | malicious users: 5 | test acc 0.9161 test loss 0.608275 best test_acc 0.9161
+e 23 | malicious users: 5 | test acc 0.8833 test loss 0.539702 best test_acc 0.9161

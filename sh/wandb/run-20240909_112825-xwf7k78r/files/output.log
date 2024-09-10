@@ -1,0 +1,24 @@
+=> Saving data in Logs/MNISTmy_attack_defense~try=3
+dataset to use is:  MNIST
+number of FL clients:  1000
+non-iid degree data distribution:  iid
+batch size is :  32
+test batch size is:  128
+use_cuda:  True
+type of FL:  my_attack_defense
+#########Federated Learning using Rankings############
+fraction of maliciou clients: 0.20 | total number of malicious clients: 200
+e 0 | malicious users: 5 | test acc 0.2070 test loss 2.287894 best test_acc 0.2070
+e 1 | malicious users: 5 | test acc 0.2167 test loss 2.275413 best test_acc 0.2167
+e 2 | malicious users: 5 | test acc 0.3529 test loss 2.258580 best test_acc 0.3529
+e 3 | malicious users: 5 | test acc 0.3848 test loss 2.240418 best test_acc 0.3848
+e 4 | malicious users: 5 | test acc 0.4554 test loss 2.212900 best test_acc 0.4554
+e 5 | malicious users: 5 | test acc 0.3613 test loss 2.175472 best test_acc 0.4554
+e 6 | malicious users: 5 | test acc 0.3846 test loss 2.128687 best test_acc 0.4554
+e 7 | malicious users: 5 | test acc 0.4743 test loss 2.064643 best test_acc 0.4743
+e 8 | malicious users: 5 | test acc 0.6086 test loss 1.933642 best test_acc 0.6086
+e 9 | malicious users: 5 | test acc 0.6204 test loss 1.734227 best test_acc 0.6204
+e 10 | malicious users: 5 | test acc 0.6474 test loss 1.563043 best test_acc 0.6474
+e 11 | malicious users: 5 | test acc 0.6029 test loss 1.408051 best test_acc 0.6474
+e 12 | malicious users: 5 | test acc 0.6319 test loss 1.291932 best test_acc 0.6474
+e 13 | malicious users: 5 | test acc 0.7433 test loss 1.152370 best test_acc 0.7433

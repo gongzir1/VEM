@@ -1,0 +1,44 @@
+=> Saving data in Logs/CIFAR10my_attack_defense~try=0
+dataset to use is:  CIFAR10
+number of FL clients:  1000
+non-iid degree data distribution:  iid
+batch size is :  32
+test batch size is:  128
+Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz to ./cifar10/data/cifar-10-python.tar.gz
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+100.0%
+Extracting ./cifar10/data/cifar-10-python.tar.gz to ./cifar10/data/
+Files already downloaded and verified
+generating IID participant indices
+use_cuda:  True
+type of FL:  my_attack_defense
+#########Federated Learning using Rankings############
+fraction of maliciou clients: 0.20 | total number of malicious clients: 200

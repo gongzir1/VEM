@@ -1,0 +1,127 @@
+{
+    "os": "Linux-6.2.0-39-generic-x86_64-with-glibc2.37",
+    "python": "3.10.9",
+    "heartbeatAt": "2024-09-09T04:14:08.952194",
+    "startedAt": "2024-09-09T04:14:08.289783",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--set",
+        "CIFAR10",
+        "--model",
+        "Conv8",
+        "--batch_size",
+        "8",
+        "--local_epochs",
+        "5",
+        "--FL_global_epochs",
+        "500",
+        "--lr",
+        "0.4",
+        "--data_loc",
+        "./cifar10/data/",
+        "--data_backdoor",
+        "./cifar10/data/backdoor",
+        "--FL_type",
+        "my_attack_defense"
+    ],
+    "state": "running",
+    "program": "/home/test/VEM/sh/../main.py",
+    "codePathLocal": null,
+    "codePath": "main.py",
+    "git": {
+        "remote": "https://github.com/gongzir1/VEM.git",
+        "commit": "cfdaf955a92686485f9dcbbf07c1ccbaca597dfd"
+    },
+    "email": "zhaoxi_zhang@163.com",
+    "root": "/home/test/VEM",
+    "host": "test-MS-7B51",
+    "username": "test",
+    "executable": "/home/test/anaconda3/envs/FRL_test/bin/python",
+    "cpu_count": 6,
+    "cpu_count_logical": 12,
+    "cpu_freq": {
+        "current": 2800.013416666666,
+        "min": 800.0,
+        "max": 4700.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2701.576,
+            "min": 800.0,
+            "max": 4700.0
+        },
+        {
+            "current": 3119.197,
+            "min": 800.0,
+            "max": 4700.0
+        },
+        {
+            "current": 2699.096,
+            "min": 800.0,
+            "max": 4700.0
+        },
+        {
+            "current": 2700.894,
+            "min": 800.0,
+            "max": 4700.0
+        },
+        {
+            "current": 2700.0,
+            "min": 800.0,
+            "max": 4700.0
+        },
+        {
+            "current": 2699.984,
+            "min": 800.0,
+            "max": 4700.0
+        },
+        {
+            "current": 2700.063,
+            "min": 800.0,
+            "max": 4700.0
+        },
+        {
+            "current": 2699.978,
+            "min": 800.0,
+            "max": 4700.0
+        },
+        {
+            "current": 2702.437,
+            "min": 800.0,
+            "max": 4700.0
+        },
+        {
+            "current": 2698.115,
+            "min": 800.0,
+            "max": 4700.0
+        },
+        {
+            "current": 2700.018,
+            "min": 800.0,
+            "max": 4700.0
+        },
+        {
+            "current": 2971.359,
+            "min": 800.0,
+            "max": 4700.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 439.04788970947266,
+            "used": 325.4475555419922
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 3080",
+            "memory_total": 10737418240
+        }
+    ],
+    "memory": {
+        "total": 62.60219192504883
+    }
+}
