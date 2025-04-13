@@ -7,9 +7,12 @@ from torch.autograd import Function
 import permutation_ops
 from scipy.optimize import linear_sum_assignment
  
+import torch
+
 
 def calculate_threshold(r_s,u,m,k,max_t):
-    w=torch.sort(r_s,1)[1]  # repution for m beign updates
+
+    w=torch.sort(r_s,1)[1]  # repution for m updates
     w_m=torch.sum(w,0)   # aggreated reputation e_1, e_2, ... e_n
     
     #get s_all
@@ -34,7 +37,6 @@ def calculate_threshold(r_s,u,m,k,max_t):
     t1 = smaller_indices[-1] if smaller_indices.numel() > 0 else torch.tensor(0)
     t2 = greater_indices[0] if greater_indices.numel()>0 else torch.tensor(n)
 
-
     # solve out of memory issue
 
     if t2 - t1 > max_t:
@@ -42,8 +44,7 @@ def calculate_threshold(r_s,u,m,k,max_t):
         t2 = torch.tensor(int(n * (1 - k)) + max_t//2, dtype=torch.int32) if torch.tensor(int(n * (1 - k)) + max_t//2, dtype=torch.int32)<n else torch.tensor(n)
 
     
-    return t1,t2,w,w_m,sorted_edges
-
+    return t1,t2,w,w_m
 
 def Hungarian_algorithm(matrix):
     """
@@ -65,17 +66,13 @@ def Hungarian_algorithm(matrix):
     
     return exact_matrix
 
- 
-
 def optimize(u,r_s,k,m,device,lr,nep,max_t,temp,iteration,noise):
-    t1,t2,ranking,w_b,sorted_edges=calculate_threshold(r_s,u,m,k,max_t) 
+    t1,t2,ranking,w_b=calculate_threshold(r_s,u,m,k,max_t) 
     sorted_reputation=torch.sort(w_b)
-    
 
     sorted_reputation_sub=sorted_reputation[0][t1:t2].float() # get the aggreated repution for vunerable edges
     vunerable_edges=sorted_reputation[1][t1:t2]    # vunerable edges
     vunerable=ranking[:,vunerable_edges].float().unsqueeze(1)
-
 
     sorted_reputation_sub.requires_grad=True
 
@@ -103,10 +100,9 @@ def optimize(u,r_s,k,m,device,lr,nep,max_t,temp,iteration,noise):
         optim.zero_grad()
         Loss.backward()
         optim.step()
-    # print(E_sub_train)
+ 
     E_final=Hungarian_algorithm(E_sub_train)
     mal_rank_vunberable_edges=((vunerable)@E_final).squeeze(1)
-    # mal_rank=torch.cat((r_s[:,:t1],mal_selected.squeeze(1),r_s[:,t2:]),dim=1)
     ranking[:,vunerable_edges]=mal_rank_vunberable_edges.long()      #update w 
     
     return ranking

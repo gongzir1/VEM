@@ -4,7 +4,6 @@ import torch.nn as nn
 import models
 from utils import *
 from AGRs import *
-from Attacks import *
 import copy
 import numpy as np
 import torch.optim as optim
@@ -44,6 +43,8 @@ def FRL_VEM(tr_loaders, te_loader):
     
     e=0
     t_best_acc=0
+    R_his=collections.defaultdict(list)
+    R_mal_his=collections.defaultdict(list)
 
     while e <= args.FL_global_epochs:
         torch.cuda.empty_cache() 
@@ -59,13 +60,11 @@ def FRL_VEM(tr_loaders, te_loader):
         round_users = np.random.choice(all_clients, args.round_nclients, replace=False)
 
         num_round_malicious = int(args.round_nclients * args.at_fractions)
-        # Ensure exactly nuargs.at_fractionsound_malicious malicious clients
         round_malicious = np.random.choice(round_users, num_round_malicious, replace=False)
         round_benign = np.setdiff1d(round_users, round_malicious) 
             
         user_updates=collections.defaultdict(list)
         rs=collections.defaultdict(list)
-
         ########################################benign Client Learning#########################################
         m_c=collections.defaultdict(list)
         for n, m in FLmodel.named_modules():
@@ -85,46 +84,43 @@ def FRL_VEM(tr_loaders, te_loader):
                 if hasattr(m, "scores"):
                     
                     rank=Find_rank(m.scores.detach().clone())
-                    ########### pass m benign rankings to attacker#############
-                    if m_c[str(n)]<len(round_malicious):
-                        # rank=rank.unsqueeze(0)
-                        rs[str(n)]=rank[None,:] if len(rs[str(n)])==0 else torch.cat((rs[str(n)],rank[None,:]),0)
-                        m_c[str(n)]=m_c[str(n)]+1
-                    # del permutation_matrix
-                    ######################################################################
                     user_updates[str(n)]=rank[None,:] if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], rank[None,:]), 0)
                     del rank
                             
         del optimizer, mp, scheduler
         ########################################malicious Client Learning######################################
         if len(round_malicious):
+            for kk in np.random.choice(n_attackers, min(len(round_malicious), args.rand_mal_clients), replace=False): 
+            
+                torch.cuda.empty_cache()  
+                mp = copy.deepcopy(FLmodel)
+                optimizer = optim.SGD([p for p in mp.parameters() if p.requires_grad], lr=args.lr*(args.lrdc**e), momentum=args.momentum, weight_decay=args.wd)
+                scheduler = CosineAnnealingLR(optimizer, T_max=args.local_epochs)
+                for epoch in range(args.local_epochs):
+                    train_loss, train_acc = train(tr_loaders[kk], mp, criterion, optimizer, args.device)
+                    scheduler.step()
+                for n, m in mp.named_modules():
+                    if hasattr(m, "scores"):
+                        rank=Find_rank(m.scores.detach().clone())
+                        rs[str(n)]=rank[None,:] if len(rs[str(n)])==0 else torch.cat((rs[str(n)],rank[None,:]),0)                 
             mal_rank={}
-            torch.cuda.empty_cache()  
-            mp = copy.deepcopy(FLmodel)
+            ########## VEM attack###########
             for n, m in mp.named_modules():
-                if hasattr(m, "scores"):
-                    ######### VEM attack###########
+                if hasattr(m, "scores"):       
                     mal_rank=VEM.optimize(args.round_nclients,rs[str(n)],args.sparsity,len(round_malicious),args.device,args.lr_vem,args.nep,args.max_t,args.temp,args.iteration,args.noise)  
                     user_updates[str(n)]=mal_rank if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], mal_rank), 0)
-                    del mal_rank                  
-            del mp      
+            del mal_rank,mp
 
         ########################################Server AGR#########################################
-        if args.agr=='foolsgold':
-            selected_user_updates=defense.foolsgold(FLmodel, user_updates,args.device,initial_scores)
+
+        if args.agr=='Eud':
+            selected_user_updates=defense.Euclidean(FLmodel, user_updates,int(0.2*len(round_users)))
+        elif args.agr=='Krum':
+            selected_user_updates=defense.Krum(FLmodel, user_updates,int(0.2*len(round_users)))
         else:
-            if args.agr=='Eud':
-                selected_user_updates=defense.Euclidean(FLmodel, user_updates,int(0.2*len(round_users)))
-            elif args.agr=='Krum':
-                selected_user_updates=defense.Krum(FLmodel, user_updates,int(0.2*len(round_users)))
-            elif args.agr=='FABA':
-                selected_user_updates=defense.FABA(FLmodel, user_updates,int(0.2*len(round_users)))
-            elif args.agr=='DnC':
-                selected_user_updates=defense.DnC(FLmodel, user_updates,int(0.2*len(round_users)),wandb.config.sub_dim, wandb.config.num_iters,wandb.config.filter_frac)
-            else:
-                selected_user_updates=user_updates
-            
-            FRL_Vote(FLmodel, selected_user_updates, initial_scores)
+            selected_user_updates=user_updates
+        
+        FRL_Vote(FLmodel, selected_user_updates, initial_scores)
 
         del user_updates
         if (e+1)%1==0:
@@ -139,7 +135,6 @@ def FRL_VEM(tr_loaders, te_loader):
                 f.write("\n"+str(sss))
 
         e+=1
-
 
 
 

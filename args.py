@@ -149,6 +149,10 @@ def parse_arguments():
     parser.add_argument(
         "--noise", type=float, default=1, help="Noise for GS"
     )
+    parser.add_argument(
+        "--estimate", type=str, default='alternative', help="Estimation methods"
+    )
+    
 
 
 
