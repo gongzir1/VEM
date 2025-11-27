@@ -54,6 +54,19 @@ def Get_local_models(FLmodel, user_updates, initial_scores,users):
         local_models.append(local_model)
     
     return local_models
+def Get_group_models(FLmodel, user_updates, initial_scores):
+    group_model = copy.deepcopy(FLmodel)
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"):
+            args_sorts=torch.sort(user_updates[str(n)])[1]
+            sum_args_sorts=torch.sum(args_sorts, 0)         
+            idxx=torch.sort(sum_args_sorts)[1]          # get the rank again
+
+            temp1=m.scores.detach().clone()
+            temp1.flatten()[idxx]=initial_scores[str(n)] # assign the score based on ranking
+            m.scores=torch.nn.Parameter(temp1)                       
+            del idxx, temp1                      
+    return group_model
             
 def train_label_flip(trainloader, model, criterion, optimizer, device):
     # switch to train mode

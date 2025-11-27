@@ -34,8 +34,7 @@ def main():
     (run_base_dir / "output.txt").write_text(str(args))
     args.run_base_dir = run_base_dir
 
-    print(f"=> Saving data in {run_base_dir}")
-     
+    print(f"=> Saving data in {run_base_dir}")     
     #distribute the dataset
     print ("dataset to use is: ", args.set)
     print ("number of FL clients: ", args.nClients)
